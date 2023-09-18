@@ -5,6 +5,10 @@ const port = 3000
 
 connectToDb();
 
+// apis
+app.use('/api/auth',require('./routes/auth'));
+app.use('/api/notes',require('./routes/notes'));
+
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
