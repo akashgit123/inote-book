@@ -5,6 +5,8 @@ const port = 3000
 
 connectToDb();
 
+app.use(express.json());
+
 // apis
 app.use('/api/auth',require('./routes/auth'));
 app.use('/api/notes',require('./routes/notes'));
