@@ -5,6 +5,7 @@ const {body,validationResult} = require('express-validator');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const fetchUser = require('../middleware/fetchUser');
 
 
 router.post('/create-user',[
@@ -61,13 +62,13 @@ router.post('/login',[
         try{
             let user = await User.findOne({email});
             if(!user){
-                return res.send({ error : "Enter correct credentials" }).status(400);
+                return res.send({ error : "Enter correct credentials 1" }).status(400);
             }
 
             const comparePassword = await bcrypt.compare(password,user.password);
 
             if(!comparePassword){
-                return res.send({ error : "Enter correct credentials" }).status(400);           
+                return res.send({ error : "Enter correct credentials 2" }).status(400);           
             }
 
             const payload ={
@@ -85,6 +86,19 @@ router.post('/login',[
             return res.send({ error : "Something went wrong" }).status(400);
         }
     }
-    )
+)
+
+router.post('/getuser',fetchUser,async(req,res)=>{
+    try{
+        userId = req.user.id;
+        const user = await User.findById(userId).select("-password");
+        res.send(user);
+    }
+    catch(err){
+        console.log(err.message);
+        console.log(err);
+        return res.send({ error : "Something went wrong" }).status(400);
+    }
+})
 
 module.exports = router;
