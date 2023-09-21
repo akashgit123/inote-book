@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
+
+const dbUri = process.env.MONGODB_URI;
 
 const connectToDb = async() =>{
-    mongoose.connect('mongodb://127.0.0.1:27017/inote-book')
+    mongoose.connect(dbUri)
     .then(() => console.log('Connected!'));
 }
 

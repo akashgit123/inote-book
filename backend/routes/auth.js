@@ -3,6 +3,9 @@ const router = express.Router();
 const User = require('../models/User');
 const {body,validationResult} = require('express-validator');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
 
 router.post('/',[
     body('name').isLength({min:5}).withMessage('Enter a valid name (have to contain atleast 5 characters)'),
@@ -25,7 +28,15 @@ router.post('/',[
                 password:securedPassword,
             })
             .then((user)=>{
-                res.json(user);
+                // res.json(user);
+                const payload ={
+                    name : user.name,
+                    email:user.email,
+                    id:user._id
+                }
+                const privateKey = process.env.JWT_SECRET_KEY;
+                const token = jwt.sign(payload, privateKey);
+                res.json({token});
             })
             .catch((err)=>{
                 res.json({message:"Something went wrong"});
