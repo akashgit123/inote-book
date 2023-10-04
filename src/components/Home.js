@@ -1,12 +1,14 @@
 import React from "react";
+import Notes from "./Notes";
 
 export default function Home() {
+  
   return (
     <div>
       <div className="container my-3">
         <h1>Add your note</h1>
         <div className="mb-3">
-          <label for="exampleFormControlInput1" className="form-label my-2">
+          <label htmlFor="exampleFormControlInput1" className="form-label my-2">
             Title
           </label>
           <input
@@ -17,7 +19,7 @@ export default function Home() {
           />
         </div>
         <div className="mb-3">
-          <label for="exampleFormControlTextarea1" className="form-label">
+          <label htmlFor="exampleFormControlTextarea1" className="form-label">
             Note description
           </label>
           <textarea
@@ -29,9 +31,7 @@ export default function Home() {
         <button type="submit" className="btn btn-primary">Submit</button>
       </div>
 
-      <div className="container my-3">
-        <h2>Your Notes</h2>
-      </div>
+      <Notes />
     </div>
   );
 }
