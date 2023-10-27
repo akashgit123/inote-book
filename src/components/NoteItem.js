@@ -11,6 +11,10 @@ export default function NoteItem(props) {
           {noteItem.description} 
           </p>
         </div>
+        <div >
+          <i className="fa-solid fa-trash my-2 mx-3"></i> 
+          <i className="fa-solid fa-pen-to-square my-2 mx-2"></i>
+        </div>
       </div>
     </div>
   );
