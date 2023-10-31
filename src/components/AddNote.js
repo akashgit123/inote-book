@@ -43,7 +43,7 @@ export default function AddNote() {
         ></textarea>
       </div>
       <button type="submit" className="btn btn-primary" onClick={handleOnClick}>
-        Submit
+        Add Note
       </button>
     </div>
   );
