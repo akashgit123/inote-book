@@ -42,6 +42,18 @@ export default function AddNote() {
           onChange={handleOnChange}
         ></textarea>
       </div>
+      <div className="mb-3">
+        <label htmlFor="title" className="form-label my-2">
+          Tag
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          id="tag"
+          name="tag"
+          onChange={handleOnChange}
+        />
+      </div>
       <button type="submit" className="btn btn-primary" onClick={handleOnClick}>
         Add Note
       </button>
