@@ -44,7 +44,6 @@ const NoteState = (props) =>{
             "title": title,
             "description": description,
             "tag": tag,
-            "__v": 0
         }
         setNotes(notes.concat(note));
     }

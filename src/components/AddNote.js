@@ -4,11 +4,12 @@ import NoteContext from "../context/notes/noteContext";
 export default function AddNote() {
   const noteContext = useContext(NoteContext);
   const {addNote } = noteContext;
-  const [note,setNote] = useState({title:"",description:"",tag:"general"});
+  const [note,setNote] = useState({title:"",description:"",tag:""});
 
   const handleOnClick =(e) =>{
     e.preventDefault();
     addNote(note.title,note.description,note.tag);
+    setNote({title:"",description:"",tag:""});
   }
   const handleOnChange = (e) =>{
     setNote({...note,[e.target.name]:e.target.value})
@@ -25,6 +26,7 @@ export default function AddNote() {
           type="text"
           className="form-control"
           id="title"
+          value={note.title}
           name="title"
           placeholder="Enter title of your note here"
           onChange={handleOnChange}
@@ -37,6 +39,7 @@ export default function AddNote() {
         <textarea
           className="form-control"
           id="description"
+          value={note.description}
           name="description"
           rows="3"
           onChange={handleOnChange}
@@ -50,11 +53,12 @@ export default function AddNote() {
           type="text"
           className="form-control"
           id="tag"
+          value={note.tag}
           name="tag"
           onChange={handleOnChange}
         />
       </div>
-      <button type="submit" className="btn btn-primary" onClick={handleOnClick}>
+      <button disabled={note.title.length <5 || note.description.length <5} type="submit" className="btn btn-primary" onClick={handleOnClick}>
         Add Note
       </button>
     </div>

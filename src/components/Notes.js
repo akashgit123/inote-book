@@ -63,7 +63,7 @@ export default function Notes() {
                         </div>
                         <div className="modal-footer">
                             <button type="button" ref={closeRef} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button onClick={handleUpdateClick} type="button" className="btn btn-primary">Update Note</button>
+                            <button disabled={ note.etitle.length <5 || note.edescription.length < 5} onClick={handleUpdateClick} type="button" className="btn btn-primary">Update Note</button>
                         </div>
                     </div>
                 </div>
@@ -71,6 +71,9 @@ export default function Notes() {
       <div className="container">
         <div className="row my-3">
           <h2>Your Notes</h2>
+          <div className="container">
+            <h5>{notes.length === 0 && "No Notes to Display"}</h5>
+          </div>
           {notes.map((note) => {
             return <NoteItem noteItem={note} key={note._id} updateNote={updateNote} note={note}/>;
           })}

@@ -10,9 +10,10 @@ export default function NoteItem(props) {
       <div className="card my-2">
         <div className="card-body">
           <h5 className="card-title">{noteItem.title}</h5>
-          <p className="card-text">
+          <pre className="card-text">
           {noteItem.description} 
-          </p>
+          </pre>
+          <i>{noteItem.tag}</i>
         </div>
         <div >
           <i className="fa-solid fa-trash my-2 mx-3" onClick={()=>{deleteNote(noteItem._id)}}></i> 
