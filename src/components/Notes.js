@@ -5,23 +5,26 @@ import AddNote from "./AddNote";
 
 export default function Notes() {
   const noteContext = useContext(NoteContext);
-  const { notes, fetchNotes } = noteContext;
+  const { notes, fetchNotes , editNote } = noteContext;
   useEffect(() => {
     fetchNotes();
     // eslint-disable-next-line 
   }, [])
 
   const ref = useRef(null)
-  const [note, setNote] = useState({etitle: "", edescription: "", etag: ""})
+  const closeRef = useRef(null)
+  const [note, setNote] = useState({eid:"",etitle: "", edescription: "", etag: ""})
 
   const updateNote = (currentNote) => {
       ref.current.click();
-      setNote({etitle: currentNote.title, edescription: currentNote.description, etag:currentNote.tag})
+      setNote({eid:currentNote._id,
+        etitle: currentNote.title, edescription: currentNote.description, etag:currentNote.tag})
   }
 
-  const handleClick = (e)=>{
+  const handleUpdateClick = (e)=>{
       console.log("Updating the note...", note)
-      e.preventDefault(); 
+      editNote(note.eid,note.etitle,note.edescription,note.etag);
+      closeRef.current.click();
   }
 
   const onChange = (e)=>{
@@ -32,7 +35,7 @@ export default function Notes() {
     <>
       <AddNote />
       <button ref={ref} type="button" className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Launch demo modal
+                Update Your Note
             </button>
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
@@ -49,7 +52,7 @@ export default function Notes() {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="description" className="form-label">Description</label>
-                                    <input type="text" className="form-control" id="edescription" name="edescription" value={note.edescription} onChange={onChange} />
+                                    <textarea className="form-control" id="edescription" name="edescription" value={note.edescription} onChange={onChange} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="tag" className="form-label">Tag</label>
@@ -59,8 +62,8 @@ export default function Notes() {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button onClick={handleClick} type="button" className="btn btn-primary">Update Note</button>
+                            <button type="button" ref={closeRef} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button onClick={handleUpdateClick} type="button" className="btn btn-primary">Update Note</button>
                         </div>
                     </div>
                 </div>
