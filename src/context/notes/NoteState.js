@@ -14,7 +14,7 @@ const NoteState = (props) =>{
             method:"GET",
             headers :{
                 'Content-Type':'application/json',
-                'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQXRoaXNoIiwiZW1haWwiOiJhdGhpc2hAZ21haWwuY29tIiwiaWQiOiI2NTBjNGYyZjc1YmRmMGYzOGRjNTdmN2IiLCJpYXQiOjE2OTUzMDcxNTZ9.W3mU19TMloArzbZcMfIiUOe0GUQU1fxm0RGEGwuVWY8'
+                'auth-token':localStorage.getItem('token')
             },
         });
         const data = await response.json();
@@ -29,7 +29,7 @@ const NoteState = (props) =>{
             method:"POST",
             headers :{
                 'Content-Type':'application/json',
-                'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQXRoaXNoIiwiZW1haWwiOiJhdGhpc2hAZ21haWwuY29tIiwiaWQiOiI2NTBjNGYyZjc1YmRmMGYzOGRjNTdmN2IiLCJpYXQiOjE2OTUzMDcxNTZ9.W3mU19TMloArzbZcMfIiUOe0GUQU1fxm0RGEGwuVWY8'
+                'auth-token':localStorage.getItem('token')
             },
             body:JSON.stringify({title,description,tag})
         });
@@ -55,7 +55,7 @@ const NoteState = (props) =>{
         method:"DELETE",
         headers :{
             'Content-Type':'application/json',
-            'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQXRoaXNoIiwiZW1haWwiOiJhdGhpc2hAZ21haWwuY29tIiwiaWQiOiI2NTBjNGYyZjc1YmRmMGYzOGRjNTdmN2IiLCJpYXQiOjE2OTUzMDcxNTZ9.W3mU19TMloArzbZcMfIiUOe0GUQU1fxm0RGEGwuVWY8'
+            'auth-token':localStorage.getItem('token')
         }
         });
         const resp = response.json()
@@ -75,7 +75,7 @@ const NoteState = (props) =>{
             method:"PUT",
             headers :{
                 'Content-Type':'application/json',
-                'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQXRoaXNoIiwiZW1haWwiOiJhdGhpc2hAZ21haWwuY29tIiwiaWQiOiI2NTBjNGYyZjc1YmRmMGYzOGRjNTdmN2IiLCJpYXQiOjE2OTUzMDcxNTZ9.W3mU19TMloArzbZcMfIiUOe0GUQU1fxm0RGEGwuVWY8'
+                'auth-token':localStorage.getItem('token')
             },
             body:JSON.stringify({title,description,tag})
         });

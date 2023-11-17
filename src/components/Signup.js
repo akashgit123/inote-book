@@ -27,15 +27,16 @@ export default function Signup(props) {
         password: credentials.password,
       }),
     });
-    const token = await response.json();
-    console.log(token);
-    if (token) {
+    const authToken = await response.json();
+    console.log(authToken);
+    if (authToken.token) {
       //set the auth token
-      localStorage.setItem("token", token);
+      localStorage.setItem("token", authToken.token);
       navigate("/");
       props.showAlert("Account Created Successfully","success");
     } else {
       // alert("Something went wrong");
+      navigate("/login");
       props.showAlert("Invalid Credentials","danger");
     }
   };

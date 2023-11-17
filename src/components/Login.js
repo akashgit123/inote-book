@@ -15,15 +15,16 @@ export default function Login(props) {
             },
             body : JSON.stringify({email:credentials.email,password:credentials.password})
         });
-        const token = await response.json();
-        console.log(token)
-        if(token){
+        const authToken = await response.json();
+        console.log(authToken)
+        if(authToken.token){
             //set the auth token
-            localStorage.setItem('token',token);
-            navigate('/');
+            localStorage.setItem('token',authToken.token);
             props.showAlert("Logged in Successfully","success");
+            navigate('/');
         }
         else{
+          navigate('/login');
           props.showAlert("Invalid credentilas .. Try agian","danger");
         }
     }
