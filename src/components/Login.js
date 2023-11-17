@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import {useNavigate} from 'react-router-dom';
 
-export default function Login() {
+export default function Login(props) {
     const [credentials,setCredentials] = useState({email:" ",password:""});
     const host = "http://localhost:7000";
     let navigate = useNavigate();
@@ -21,9 +21,10 @@ export default function Login() {
             //set the auth token
             localStorage.setItem('token',token);
             navigate('/');
+            props.showAlert("Logged in Successfully","success");
         }
         else{
-            alert("Wrong credentials");
+          props.showAlert("Invalid credentilas .. Try agian","danger");
         }
     }
 
